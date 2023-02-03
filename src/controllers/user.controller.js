@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-import {adminGuard, checkBody, jwtGuard,} from "../middlewares";
+import {adminGuard, jwtGuard,} from "../middlewares";
 import {CustomError} from "../middlewares/filter";
 import {userService} from "../services";
 
@@ -40,7 +40,7 @@ userController.get("/", jwtGuard, async (req, res, next) => {
 });
 
 // 사용자 정보 수정
-userController.put("/", checkBody, jwtGuard, async (req, res, next) => {
+userController.put("/", jwtGuard, async (req, res, next) => {
     try {
         // req에서 현재 로그인한 사용자의 Id 가져옴
         const userId = req.currentUserId;

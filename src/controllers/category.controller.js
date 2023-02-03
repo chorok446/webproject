@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {adminGuard, checkBody, jwtGuard} from "../middlewares";
+import {adminGuard, jwtGuard} from "../middlewares";
 import {categoryService, productService} from "../services";
 import {CategoryNameValidator} from "../middlewares/validator";
 
@@ -10,7 +10,6 @@ categoryController.post(
     "/",
     jwtGuard,
     adminGuard,
-    checkBody,
     CategoryNameValidator,
     async (req, res, next) => {
         try {

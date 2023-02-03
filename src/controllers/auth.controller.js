@@ -1,6 +1,6 @@
 import {Router} from "express";
 
-import {checkBody, loginvalidator, signupvalidator,} from "../middlewares";
+import {loginvalidator, signupvalidator,} from "../middlewares";
 import {authService} from "../services";
 import {localLogin} from "../middlewares/handler";
 
@@ -8,8 +8,7 @@ const authController = Router();
 
 
 authController.post(
-    "/register",
-    checkBody, signupvalidator,
+    "/register", signupvalidator,
     // 유효성 검사 미들웨어
     async (req, res, next) => {
         try {
@@ -33,7 +32,7 @@ authController.post(
 // 로컬 로그인
 authController.post(
     "/login",
-    checkBody, loginvalidator,
+    loginvalidator,
     localLogin
 );
 
