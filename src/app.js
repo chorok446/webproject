@@ -5,6 +5,7 @@ import {authController, categoryController, orderController, productController, 
 import {httpExceptionFilter} from "./middlewares";
 import passport from "passport";
 import morgan from "morgan";
+import {imageController} from "./controllers/image.controller";
 
 
 const app = express();
@@ -24,6 +25,7 @@ app.use("/api/user", userController);
 app.use("/api/product", productController);
 app.use("/api/category", categoryController);
 app.use("/api/order", orderController);
+app.use("/api/image", imageController);
 
 app.use(httpExceptionFilter);
 
