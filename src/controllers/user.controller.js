@@ -9,7 +9,7 @@ const userController = Router();
 
 // 전체 유저 목록 배열로 반환
 // 토큰 검증 및 어드민 권한 검증
-userController.get("/list",
+userController.get("/users",
     jwtGuard,
     adminGuard,
     async (req, res, next) => {
@@ -26,7 +26,7 @@ userController.get("/list",
 );
 
 // 로그인한 유저 찾기
-userController.get("/", jwtGuard, async (req, res, next) => {
+userController.get("/user", jwtGuard, async (req, res, next) => {
     try {
         // req에서 현재 로그인한 사용자의 Id 가져옴
         const userId = req.currentUserId;
@@ -40,7 +40,7 @@ userController.get("/", jwtGuard, async (req, res, next) => {
 });
 
 // 사용자 정보 수정
-userController.put("/", jwtGuard, async (req, res, next) => {
+userController.put("/user", jwtGuard, async (req, res, next) => {
     try {
         // req에서 현재 로그인한 사용자의 Id 가져옴
         const userId = req.currentUserId;
@@ -54,7 +54,7 @@ userController.put("/", jwtGuard, async (req, res, next) => {
 
         const userInfoRequired = {userId, currentPassword};
 
-        // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해 보내주었다면, 업데이트용 객체에 삽입함.
+        // 위 데이터가 undefined가 아니라면, 즉, 프론트에서 업데이트를 위해 보내주었다면, 업데이트용 객체에 삽입
         const toUpdate = {
             ...(fullName && {fullName}),
             ...(address && {address}),
@@ -75,7 +75,7 @@ userController.put("/", jwtGuard, async (req, res, next) => {
 });
 
 /** 사용자 정보 삭제 **/
-userController.delete("/", jwtGuard, async (req, res, next) => {
+userController.delete("/user", jwtGuard, async (req, res, next) => {
     try {
         const currentPassword = req.body.currentPassword;
         if (!currentPassword) {

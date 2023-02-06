@@ -21,7 +21,7 @@ app.use(passport.initialize());
 
 
 app.use("/api/auth", authController);
-app.use("/api/user", userController);
+app.use("/api/account", userController);
 app.use("/api/product", productController);
 app.use("/api/category", categoryController);
 app.use("/api/order", orderController);
