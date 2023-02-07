@@ -1,9 +1,7 @@
 import {Strategy} from "passport-local";
 import jwt from 'jsonwebtoken';
 import {authService} from "../../services";
-
-// jwt secretKey Setting
-const secretKey = process.env.JWT_SECRET_KEY || 'secret-key';
+import {jwtsecret} from "../../config/auth.config";
 
 // 로컬 로그인 필드 설정
 const config = {
@@ -18,8 +16,8 @@ const local = new Strategy(config, async (email, password, done) => {
         const user = await authService.checkUser({email}, password);
         // 유저 id와 role을 jwt 토큰에 담음
         const token = jwt.sign(
-            {type: 'JWT', userId: user._id, userEmail: user.email, userRole: user.role},
-            secretKey, {
+            {type: 'JWT', userId: user._id, userRole: user.role},
+            jwtsecret, {
                 expiresIn: "1h"
             }
         );
