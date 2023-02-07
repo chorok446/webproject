@@ -10,6 +10,7 @@ const select = {
     _id: true,
     productName: true,
     price: true,
+    company: true,
     imagePath: true,
     info: true,
 };
