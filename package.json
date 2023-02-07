@@ -1,7 +1,7 @@
 {
   "name": "shopping-mall",
-  "author": "team-13",
-  "version": "0.0.1",
+  "author": "Jeong Dong Won",
+  "version": "0.5.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,7 @@
     "dev": "nodemon --watch ./ --exec babel-node index.js"
   },
   "engines": {
-    "node": "16.14.0"
+    "node": "16.19.0"
   },
   "dependencies": {
     "@sindresorhus/is": "^4.6.0",
@@ -33,7 +33,6 @@
     "passport-kakao": "^1.0.1",
     "passport-local": "^1.0.0",
     "process": "^0.11.10",
-    "request-ip": "^3.3.0",
     "save": "^2.9.0",
     "sharp": "^0.31.3",
     "uuid": "^9.0.0",
