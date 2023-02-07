@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
-import logger from "../middlewares/logger/config/logger";
+import {logger} from "../middlewares/logger/config/logger";
+
 
 const DB_URL = process.env.MONGODB_URL;
 

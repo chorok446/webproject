@@ -1,6 +1,7 @@
 import morgan from 'morgan';
-import logger from './config/logger';
+
 import dotenv from 'dotenv';
+import {logger} from "./config/logger";
 
 dotenv.config();
 

@@ -64,6 +64,14 @@ const logger = winston.createLogger({
     ],
 });
 
+logger.stream = {
+    // morgan winston Setting
+    write: (message) => {
+        logger.http(message);
+    },
+};
+
+
 if (process.env.NODE_ENV !== 'production') {
     logger.add(
         new winston.transports.Console({
@@ -77,4 +85,5 @@ if (process.env.NODE_ENV !== 'production') {
     );
 }
 
-export default logger;
+
+export {logger};

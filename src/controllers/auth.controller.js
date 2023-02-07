@@ -4,6 +4,7 @@ import {loginvalidator, signupvalidator,} from "../middlewares";
 import {authService} from "../services";
 import {localLogin} from "../middlewares/handler";
 
+
 const authController = Router();
 
 
