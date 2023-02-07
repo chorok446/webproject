@@ -1,5 +1,6 @@
 import {categoryRepository} from "../db";
 import {CustomError} from "../middlewares/filter";
+import commonErrors from "../middlewares/filter/error/commonErrors";
 
 class CategoryService {
     constructor(categoryRepository) {
@@ -11,7 +12,7 @@ class CategoryService {
         const category = await this.categoryRepository.findByName(categoryName);
 
         if (category) {
-            throw new CustomError(400, '이미 존재하는 카테고리입니다.');
+            throw new CustomError(400, commonErrors.resourceDuplicationError);
         }
 
         const NewCategory = await this.categoryRepository.create(
@@ -33,7 +34,7 @@ class CategoryService {
         const category = await this.categoryRepository.findByName(categoryName);
 
         if (!category) {
-            throw new CustomError(404, '해당하는 카테고리가 없습니다.')
+            throw new CustomError(404, commonErrors.resourceNotFoundError)
         }
 
         return category;
@@ -65,7 +66,7 @@ class CategoryService {
         const category = await this.categoryRepository.findById(categoryId);
 
         if (!category) {
-            throw new CustomError(404, '카테고리가 존재하지 않습니다.')
+            throw new CustomError(404, commonErrors.resourceNotFoundError)
         }
 
         const deletecategory = await this.categoryRepository.delete(categoryId);

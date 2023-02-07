@@ -3,6 +3,7 @@ import {Router} from "express";
 import {adminGuard, jwtGuard,} from "../middlewares";
 import {CustomError} from "../middlewares/filter";
 import {userService} from "../services";
+import {updateUserValidator} from "../middlewares/validator";
 
 const userController = Router();
 
@@ -40,17 +41,14 @@ userController.get("/user", jwtGuard, async (req, res, next) => {
 });
 
 // 사용자 정보 수정
-userController.put("/user", jwtGuard, async (req, res, next) => {
+userController.put("/user", jwtGuard, updateUserValidator, async (req, res, next) => {
     try {
         // req에서 현재 로그인한 사용자의 Id 가져옴
         const userId = req.currentUserId;
 
         // body data 로부터 업데이트할 사용자 정보를 추출
         const {fullName, address, phoneNumber, currentPassword} = req.body;
-        // 확인을 위한 currentPassword가 없을 시, 진행 불가
-        if (!currentPassword) {
-            throw new Error("정보를 변경하려면, 현재의 비밀번호가 필요합니다.");
-        }
+
 
         const userInfoRequired = {userId, currentPassword};
 

@@ -1,6 +1,7 @@
 import {userRepository} from '../db';
 import bcrypt from 'bcrypt';
 import {CustomError} from "../middlewares/filter";
+import commonErrors from "../middlewares/filter/error/commonErrors";
 
 class AuthService {
     constructor(userRepository) {
@@ -13,7 +14,7 @@ class AuthService {
         const user = await this.userRepository.findOneUser(filter);
         if (!user) {
             throw new CustomError(
-                404, '가입된 계정정보가 없습니다. 회원가입 후 다시 시도해주세요.'
+                404, commonErrors.resourceNotFoundError
             );
         }
 
@@ -22,7 +23,7 @@ class AuthService {
         const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
         if (!isPasswordCorrect) {
             throw new CustomError(
-                400, '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.'
+                400, commonErrors.resourceNotFoundError
             );
         }
 
@@ -37,7 +38,7 @@ class AuthService {
         const user = await this.userRepository.findOneUser({email});
         if (user) {
             throw new CustomError(
-                400, '이미 가입되어 있는 이메일 입니다. 로그인 해주세요.'
+                400, commonErrors.resourceDuplicationError
             );
         }
 
