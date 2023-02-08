@@ -7,7 +7,7 @@ const CategoryNameValidator = (req, res, next) => {
     try {
         const {categoryName} = req.body;
         if (!categoryName) {
-            throw new CustomError(400, commonErrors.inputError)
+            throw new CustomError(400, commonErrors.argumentError)
         }
         if (!regCategory.test(categoryName)) {
             throw new CustomError(400, commonErrors.requestValidationError)

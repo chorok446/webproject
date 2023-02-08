@@ -23,7 +23,7 @@ class AuthService {
         const isPasswordCorrect = await bcrypt.compare(password, correctPasswordHash);
         if (!isPasswordCorrect) {
             throw new CustomError(
-                400, commonErrors.resourceNotFoundError
+                400, commonErrors.inputError
             );
         }
 

@@ -10,7 +10,7 @@ const updateUserValidator = (req, res, next) => {
         const {phoneNumber, address, fullName, currentPassword} = req.body;
 
         if (!phoneNumber || !address || !fullName || !currentPassword) {
-            throw new CustomError(400, commonErrors.inputError)
+            throw new CustomError(400, commonErrors.argumentError)
         }
 
         if (!regfullName.test(fullName)) {
