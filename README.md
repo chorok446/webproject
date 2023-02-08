@@ -14,14 +14,12 @@
 
 .env 파일 생성 <br>
 밑에 적혀있는 환경변수 설정 <br>
-MongoDB 실행 <br>
 터미널에 밑에 있는 명령어 타이핑
 
 ### .env
-
 ```
 PORT  설정 안할시 기본포트 5000번
-JWT_SECRET_KEY
+JWT_SECRET
 MONGODB_URL 
 AWS_ACCESS_KEY_ID
 AWS_SECRET_KEY
