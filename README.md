@@ -12,11 +12,16 @@
 
 ## 실행 방법
 
+### 요구사항
+
+Node 16 버전 이상 필요
+
 .env 파일 생성 <br>
 밑에 적혀있는 환경변수 설정 <br>
 터미널에 밑에 있는 명령어 타이핑
 
 ### .env
+
 ```
 PORT  설정 안할시 기본포트 5000번
 JWT_SECRET
@@ -30,6 +35,6 @@ AWS_BUCKET_NAME
 ### 터미널
 ``` 
 npm install 
-npm start
+npm run dev
 ```
 
