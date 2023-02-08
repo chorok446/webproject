@@ -40,6 +40,11 @@ app.use("/api/product", productController);
 app.use("/api/category", categoryController);
 app.use("/api/image", imageController);
 
+// 404 에러 핸들러
+app.use((req, res, next) => {
+    throw new CustomError(404, commonErrors.resourceNotFoundError);
+});
+
 app.use(httpExceptionFilter);
 
 export {app};
