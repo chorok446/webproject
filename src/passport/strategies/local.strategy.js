@@ -4,7 +4,7 @@ import {authService} from "../../services";
 
 require('dotenv').config();
 
-const {jwtscret} = process.env.JWTSECRET;
+const jwtscret = process.env.JWTSECRET;
 
 // 로컬 로그인 필드 설정
 const config = {
