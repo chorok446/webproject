@@ -1,7 +1,10 @@
 import {Strategy} from "passport-local";
 import jwt from 'jsonwebtoken';
 import {authService} from "../../services";
-import {jwtsecret} from "../../config/auth.config";
+
+require('dotenv').config();
+
+const {jwtscret} = process.env.jwtsecret;
 
 // 로컬 로그인 필드 설정
 const config = {
@@ -17,7 +20,7 @@ const local = new Strategy(config, async (email, password, done) => {
         // 유저 id와 role을 jwt 토큰에 담음
         const token = jwt.sign(
             {type: 'JWT', userId: user._id, userRole: user.role},
-            jwtsecret, {
+            jwtscret, {
                 expiresIn: "1h"
             }
         );

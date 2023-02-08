@@ -1,8 +1,13 @@
 import mongoose from "mongoose";
 import {logger} from "../middlewares/logger/config/logger";
+import commonErrors from "../middlewares/filter/error/commonErrors";
+import {CustomError} from "../middlewares/filter";
+import {DB_URL} from "../config/db.config";
 
 
-const DB_URL = process.env.MONGODB_URL;
+if (!DB_URL) {
+    throw new CustomError(500, commonErrors.configError);
+}
 
 mongoose.set('strictQuery', false);
 mongoose.connect(DB_URL, {

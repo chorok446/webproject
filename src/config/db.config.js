@@ -1,5 +1,6 @@
 require('dotenv').config();
 
 module.exports = {
-    jwtsecret: process.env.JWT_SECRET_KEY
+    DB_URL: process.env.MONGODB_URL
 };
+

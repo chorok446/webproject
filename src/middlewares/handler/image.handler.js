@@ -3,8 +3,16 @@ const multerS3 = require('multer-s3');
 const path = require('path');
 const AWS = require("aws-sdk");
 const dotenv = require('dotenv');
-const {accessKeyId, secretAccessKey, region, bucket} = require("../../config/aws.config");
+const {CustomError} = require("../filter");
+const CommonErrors = require("../filter/error/commonErrors");
+const {secretAccessKey, bucket, region, accessKeyId} = require("../../config/aws.config");
 dotenv.config({path: './.env'});
+
+// 환경변수 정의 안되어 있을시
+if (!accessKeyId || !secretAccessKey || !region || !bucket) {
+    throw new CustomError(500, CommonErrors.configError);
+}
+
 
 const s3 = new AWS.S3({ //AWS SDK 설정 항목
     accessKeyId,
