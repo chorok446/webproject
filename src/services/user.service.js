@@ -2,6 +2,7 @@ import {userRepository} from '../db';
 import bcrypt from 'bcrypt';
 import {CustomError} from "../middlewares/filter";
 import {authService} from "./auth.service";
+import commonErrors from "../middlewares/filter/error/commonErrors";
 
 class UserService {
     constructor(userRepository) {
@@ -18,7 +19,7 @@ class UserService {
     async getUser(filter) {
         const user = await this.userRepository.findOneUser(filter);
         if (!user) {
-            throw new CustomError(404, '가입된 계정정보가 없습니다. 다시 확인해 주세요.');
+            throw new CustomError(404, commonErrors.resourceNotFoundError);
         }
 
         return await user;

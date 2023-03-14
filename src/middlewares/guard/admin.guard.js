@@ -1,11 +1,12 @@
 import {CustomError} from "../filter";
+import commonErrors from "../filter/error/commonErrors";
 
 const adminGuard = async (req, res, next) => {
     try {
         const userRole = req.currentUserRole;
 
         if (userRole !== "admin") {
-            throw new CustomError(403, "허용되지 않은 접근입니다.");
+            throw new CustomError(403, commonErrors.authorizationError);
         }
         next();
     } catch (error) {

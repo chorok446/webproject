@@ -35,8 +35,8 @@ productController.post(
     }
 );
 
-// 홈화면에 표시할 최신순으로 정렬한 전체 상품 목록
-productController.get("/main/recent", async (req, res, next) => {
+
+productController.get("/", async (req, res, next) => {
     try {
         const page = Number(req.query.page || 1);
         const perPage = Number(req.query.perPage || 10);
@@ -49,16 +49,6 @@ productController.get("/main/recent", async (req, res, next) => {
     }
 });
 
-// 홈화면에 표시할 상품 목록(상위 4개)
-productController.get("/main", async (req, res, next) => {
-    try {
-        const products = await productService.getPopularAndRecent();
-
-        res.status(200).json(products);
-    } catch (error) {
-        next(error);
-    }
-});
 
 // 특정 상품 조회
 productController.get("/:productId", async (req, res, next) => {

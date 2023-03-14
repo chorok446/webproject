@@ -1,17 +1,21 @@
 import mongoose from "mongoose";
+import {logger} from "../middlewares/logger/config/logger";
+import {DB_URL} from "../config/db.config";
 
-const DB_URL = process.env.MONGODB_URL;
 
-mongoose.set('strictQuery', true)
-mongoose.connect(DB_URL);
+mongoose.set('strictQuery', false);
+mongoose.connect(DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+});
 const db = mongoose.connection;
 
 db.on("connected", () =>
-    console.log("정상적으로 MongoDB 서버에 연결되었습니다.  " + DB_URL)
+    logger.info("정상적으로 MongoDB 서버에 연결되었습니다. ")
 );
 db.on("error", (error) =>
-    console.error(
-        `MongoDB 연결에 실패하였습니다...${DB_URL}  ${error}`
+    logger.error(
+        `MongoDB 연결에 실패하였습니다... ${error}`
     )
 );
 
